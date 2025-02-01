@@ -1,0 +1,58 @@
+@options
+@argfile
+-encoding
+'UTF-8'
+-protected
+-quiet
+-sourcepath
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/kilia/GitHub/World-of-Pandia/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'World-of-Pandia 1.0 API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/kilia/GitHub/World-of-Pandia/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'World-of-Pandia 1.0 API'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/behaviors/Behavior.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/behaviors/NoBehavior.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/behaviors/RdmMoveBehavior.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/behaviors/SimBehavior.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/Entity.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/LogManager.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/Main.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/Pandian.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/PandianName.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/SimEnergy.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/SimMap.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/SimObject.java'
+'C:/Users/kilia/GitHub/World-of-Pandia/src/main/java/fr/rabbyt/SimPixel.java'
+C:\Users\kilia\GitHub\World-of-Pandia\src\main\java = 1738340778169
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\allclasses-index.html = 1738432255434
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\allpackages-index.html = 1738432255436
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\constant-values.html = 1738432255344
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\element-list = 1738432255321
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\help-doc.html = 1738432255473
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\index-all.html = 1738432255462
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\index.html = 1738432255411
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\javadoc.bat = 1738432137277
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\jquery-ui.overrides.css = 1738432255508
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\member-search-index.js = 1738432255442
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\module-search-index.js = 1738432255438
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\overview-summary.html = 1738432255465
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\overview-tree.html = 1738432255407
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\package-search-index.js = 1738432255440
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\script.js = 1738432255477
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\search.js = 1738432255486
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\stylesheet.css = 1738432255476
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\tag-search-index.js = 1738432255443
+C:\Users\kilia\GitHub\World-of-Pandia\target\site\apidocs\type-search-index.js = 1738432255441
