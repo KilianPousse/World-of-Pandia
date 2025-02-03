@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 // import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Random;
+
 // import java.util.List;
 // import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
@@ -14,7 +16,7 @@ import javax.swing.ImageIcon;
  * Classe qui modélise une carte de simulation. <br>
  * 
  * @author Kilian POUSSE
- * @version 1.0
+ * @version 1.1
  * @since 2025-01-31
  */
 public class SimMap {
@@ -43,8 +45,11 @@ public class SimMap {
     /** Taille d'un pixel */
     private Integer pixelSize;
 
-    /** Ensemble des objets present sur la carte ({@link MapObject}) */
+    /** Ensemble des pixels present sur la carte ({@link MapObject}) */
     private HashMap<Integer, SimObject> objects;
+
+    /** Matrice des items */
+    private Item[][] items;
 
 
 
@@ -80,6 +85,7 @@ public class SimMap {
         this.setSize(width, height);
         this.setPixelSize(DEF_PIXEL_SIZE);
         this.objects = new HashMap<>();
+        this.items = new Item[width][height];
     }
 
     /**
@@ -92,6 +98,7 @@ public class SimMap {
         this.setSize(width, height);
         this.setPixelSize(pixelSize);
         this.objects = new HashMap<>();
+        this.items = new Item[width][height];
     }
 
 
@@ -179,55 +186,46 @@ public class SimMap {
      * Ajouter un objets à la map afin de le simuler.
      * @param object Objet a ajouter
      */
-    public void addobject(SimObject object) {
+    public void add(SimObject object) {
         if(object.getId() == null) object.setId(0);
         object.setMap(this);
         this.objects.put(object.getId(), object);
     }
 
     /**
-     * Suppression d'un objet de la map de simulation
-     * @param object Objet a suprimer
+     * Ajouter un objet à la map et aux items
+     * @param object Objet de type {@link Item} à ajouter
+     * @throws IllegalArgumentException Si la place est déjà occupée par un autre item
      */
-    public void removeObject(SimObject object) {
-        this.objects.remove(object.getId());
+    public void add(Item object) {
+        // Recuperation des coordonnées
+        int x = object.getX();
+        int y = object.getY();
+
+        // Verification si il n'y a pas deja un item à cette endroit
+        if(!isEmpty(x, y))
+            throw new IllegalArgumentException("La position (" + x + ", " + y + ") est déjà occupée par un autre item.");
+
+        add((SimObject) object);
+        this.items[x][y] = object;
     }
 
     /**
      * Suppression d'un objet de la map de simulation
-     * @param id Identifiant de l'objet a suprimer
+     * @param object Objet a suprimer
      */
-    public void removeObject(Integer id) {
-        this.objects.remove(id);
+    public void remove(SimObject object) {
+        this.objects.remove(object.getId());
     }
 
-    
-    /*public List<SimObjectDistance> getNeighbors(SimObject object, int radius) {
-        return objects.values().stream() 
-                              .filter(o -> o != object) 
-                              .filter(o -> Math.abs(o.getX() - object.getX()) <= radius && Math.abs(o.getY() - object.getY()) <= radius) 
-                              .map(o -> new SimObjectDistance(o, object.distance(o))) 
-                              .sorted(Comparator.comparingDouble(SimObjectDistance::getDistance)) 
-                              .collect(Collectors.toList()); 
+    /**
+     * Suppression d'un item de la map de simulation et de la matrice des items
+     * @param object Item a suprimer
+     */
+    public void remove(Item object) {
+        items[object.getX()][object.getY()] = null;
+        remove((SimObject) object);
     }
-    
-    public static class SimObjectDistance {
-        private SimObject object;
-        private double distance;
-
-        public SimObjectDistance(SimObject object, double distance) {
-            this.object = object;
-            this.distance = distance;
-        }
-
-        public SimObject getobject() {
-            return object;
-        }
-
-        public double getDistance() {
-            return distance;
-        }
-    }*/
 
     /**
      * Dessin sur une image le rendu de la map.
@@ -288,6 +286,74 @@ public class SimMap {
             }
         }
     }
+
+    /**
+     * Permet de savoir si il n'y a pas d'item à une localisation donnée 
+     * @param x Coordonnée du l'axe X
+     * @param y Coordonnée du l'axe Y
+     * @return Vrai si il n'y a pas d'item, Faux sinon
+     */
+    public boolean isEmpty(Integer x, Integer y) {
+        if(!isValidCoordinate(x, y)) return false;
+        return this.items[x][y] == null;
+    }
     
+    /**
+     * Retourne une localisation possible afin de creer/generer un nouveau objet
+     * @return Un tableau de deux coordonnées (X, Y), ou un NULL si aucune localisation à été trouvée
+     */
+    public Integer[] generateLocation() {
+        Integer[] location = new Integer[2];
+
+        Random rdm = new Random();
+
+        // Chercher un emplacement libre
+        for(int i = 0; i < 100; i++) {
+            location[0] = rdm.nextInt(width);
+            location[1] = rdm.nextInt(height);
+
+            if(isEmpty(location[0], location[1])) {
+                return location;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Genere un objet à une position aleatoire
+     * @param cls Classe d'objet de simulation ({@link Pandian}, {@link Bamboo}, ...)
+     * @return L'objet généré, ou null si erreur
+     */
+    public SimObject generate(Class<? extends SimObject> cls) {
+        Integer[] location = generateLocation();
+        SimObject object = null;
+    
+        if(location == null) {
+            return object;
+        }
+    
+        try {
+            // Instanciation dynamique de l'objet avec un constructeur prenant deux entiers
+            object = cls.getDeclaredConstructor(int.class, int.class)
+                      .newInstance(location[0], location[1]);
+            this.add(object);
+        } catch(Exception e) {
+            e.printStackTrace();
+            return object;
+        }
+
+        return object;
+    }
+
+    /**
+     * Permet d'enchanger deux items de place
+     * @param o1 Iteam à changer numero 1
+     * @param o2 Iteam à changer numero 2
+     */
+    public void switchIteam(Item o1, Item o2) {
+        items[o1.getX()][o1.getY()] = o2;
+        items[o2.getX()][o2.getY()] = o1;
+    }
 
 }

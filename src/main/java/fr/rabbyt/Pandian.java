@@ -43,7 +43,7 @@ public class Pandian extends Entity {
     private int age = 0;
 
     /** Energies d'un Pandien (Si vide, il meurt) */
-    private SimEnergy energies = new SimEnergy(10);
+    private SimEnergy energies = new SimEnergy(200);
 
     
 

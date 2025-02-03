@@ -10,7 +10,7 @@ import java.util.Set;
  * Cette classe implémente l'interface {@link SimObject}.
  * 
  * @author Kilian POUSSE
- * @version 1.0
+ * @version 1.1
  * @since 2025-01-31
  */
 public abstract class SimPixel implements SimObject {
@@ -253,5 +253,6 @@ public abstract class SimPixel implements SimObject {
     public String toString() {
         return "<" + this.getClass() + ", id " + String.format("%08X", id) + ">";
     }
+    
     
 }

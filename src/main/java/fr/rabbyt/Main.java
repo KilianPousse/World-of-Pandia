@@ -17,13 +17,8 @@ public class Main {
     public static void main(String[] args) {
         // Création de la carte
         SimMap map = new SimMap(100, 100);
-        Pandian p1 = new Pandian(0, 0);
-        Pandian p2 = new Pandian(50, 50);
-        Pandian p3 = new Pandian(33, 60);
-
-        map.addobject(p1);
-        map.addobject(p2);
-        map.addobject(p3);
+        for(int i=0; i<10; i++) map.generate(Pandian.class);
+        for(int i=0; i<10; i++) map.generate(Bamboo.class);
 
 
         // Déclaration de l'image comme final

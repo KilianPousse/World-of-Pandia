@@ -11,7 +11,7 @@ import fr.rabbyt.behaviors.*;
  * Cette classe hérite de la classe {@link SimPixel}.
  * 
  * @author Kilian POUSSE
- * @version 1.0
+ * @version 1.1
  * @since 2025-01-31
  */
 public abstract class Entity extends SimPixel {
@@ -88,7 +88,7 @@ public abstract class Entity extends SimPixel {
      */
     public void die() {
         if (this.map != null) {
-            map.removeObject(getId());
+            map.remove(this);
         }
     }
 }
