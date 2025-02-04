@@ -11,7 +11,7 @@ import fr.rabbyt.behaviors.*;
  * Cette classe hérite de la classe {@link SimPixel}.
  * 
  * @author Kilian POUSSE
- * @version 1.1
+ * @version 1.2
  * @since 2025-01-31
  */
 public abstract class Entity extends SimPixel {
@@ -20,6 +20,12 @@ public abstract class Entity extends SimPixel {
     
     /** Comportement que peut réaliser l'entité */
     protected Behavior behavior = new NoBehavior();  
+
+    /** Objet cible de l'entité */
+    private SimObject focus = null;
+
+    /** Rayon d'observation de l'entité */
+    protected Integer focusRadius = 10;
 
 
 
@@ -90,5 +96,29 @@ public abstract class Entity extends SimPixel {
         if (this.map != null) {
             map.remove(this);
         }
+    }
+
+    /**
+     * Setter: Mets un objet cible que l'entité va avoir pour objectif
+     * @param object Cible de l'entité
+     */
+    public void setFocus(SimObject object) {
+        this.focus = object;
+    }
+
+    /**
+     * Getter: Retourne l'objet cible que l'entité va avoir pour objectif
+     * @return Cible de l'entité
+     */
+    public SimObject getFocus() {
+        return focus;
+    }
+    
+    /**
+     * Retourne le rayon d'observation de l'entité.
+     * @return Rayon d'observation de l'entité
+     */
+    public Integer getFocusingRadius() {
+        return focusRadius;
     }
 }

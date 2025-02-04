@@ -3,9 +3,11 @@ package fr.rabbyt;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 // import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 // import java.util.List;
@@ -16,7 +18,7 @@ import javax.swing.ImageIcon;
  * Classe qui modélise une carte de simulation. <br>
  * 
  * @author Kilian POUSSE
- * @version 1.1
+ * @version 1.2
  * @since 2025-01-31
  */
 public class SimMap {
@@ -273,17 +275,17 @@ public class SimMap {
      * Actualise tous les objets de la map.
      */
     public void update() {
-        // Utiliser un Iterator pour éviter ConcurrentModificationException
-        Iterator<SimObject> iterator = objects.values().iterator();
-        while(iterator.hasNext()) {
-            SimObject object = iterator.next();
-            object.update();  // Mise à jour de l'objet
-    
-            // Si l'objet doit être supprimé (ex: Pandian n'a plus d'énergie), on utilise l'iterator
-            if(object instanceof Pandian && ((Pandian) object).getEnergies() <= 0) {
-                iterator.remove();  // Suppression sécurisée
-                LogManager.addInfo(object + " a été supprimé de la carte.");
+
+        List<Integer> keys = new ArrayList<>(objects.keySet());
+
+        for(Integer id: keys) {
+            try {
+                SimObject obj = objects.get(id);
+                obj.update();
+                
+            } catch (Exception e) {
             }
+            
         }
     }
 
@@ -356,4 +358,61 @@ public class SimMap {
         items[o2.getX()][o2.getY()] = o1;
     }
 
+    /**
+     * Retorune l'item à une localisation donnée
+     * @param x Coordonnée du l'axe X
+     * @param y Coordonnée du l'axe Y
+     * @return L'iteam à la localisation donnée
+     */
+    public Item getItem(int x, int y) {
+        return items[x][y];
+    }
+
+    /**
+     * Recherche l'objet le plus proche dans le rayons donné autour de l'objet cible.
+     * Avec validation de la classe de l'objet.
+     * @param target Objet cible
+     * @param radius Rayon maximal d'analyse autour de la cible 
+     * @param cls Classe des objects à analyser
+     * @return L'objet le plus proche de la cible
+     */
+    public SimObject closestItem(SimObject target, int radius, Class<? extends SimObject> cls) {
+        SimObject closest = null;
+        double minDistance = radius;
+    
+        for(SimObject obj : objects.values()) {
+            // Vérifier si l'objet est de la classe demandée
+            if(cls.isInstance(obj) && !obj.equals(target)) {
+                double distance = target.distance(obj);
+    
+                // Trouver l'objet le plus proche
+                if(distance < minDistance) {
+                    minDistance = distance;
+                    closest = obj;
+                }
+            }
+        }
+    
+        return closest;
+    }
+
+    /**
+     * Recherche l'objet le plus proche dans le rayons donné autour de l'objet cible
+     * @param target Objet cible
+     * @param radius Rayon maximal d'analyse autour de la cible 
+     * @return L'objet le plus proche de la cible
+     */
+    public SimObject closestItem(SimObject target, int radius) {
+        return closestItem(target, radius, SimPixel.class);
+    }
+    
+    public int getNbPandians() {
+        int count = 0;
+        for(SimObject o: objects.values()) {
+            if(o instanceof Pandian) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

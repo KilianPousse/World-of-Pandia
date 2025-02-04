@@ -1,6 +1,8 @@
 package fr.rabbyt;
 
 import java.awt.Color;
+
+import fr.rabbyt.behaviors.EatingBehavior;
 import fr.rabbyt.behaviors.RdmMoveBehavior;
 
 /*
@@ -57,7 +59,7 @@ public class Pandian extends Entity {
      */
     public Pandian(int x, int y) {
         super(x, y, pandianColor);
-        setBehavior(new RdmMoveBehavior());
+        setBehavior(new EatingBehavior());
         this.name = PandianName.generate();
     }
     
@@ -70,7 +72,7 @@ public class Pandian extends Entity {
     public Pandian(int x, int y, String name) {
         super(x, y, pandianColor);
         this.name = name;
-        setBehavior(new RdmMoveBehavior());
+        setBehavior(new EatingBehavior());
     }
 
 
@@ -140,6 +142,16 @@ public class Pandian extends Entity {
         } else {
             super.update();
         }
+    }
+
+    /**
+     * Mange une nourriture
+     * @param food Nourriture à manger
+     */
+    public void eat(Food food) {
+        int gain = food.getsEaten();
+        int energies = getEnergies() + gain;
+        setEnergies(energies);
     }
 
     

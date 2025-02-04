@@ -51,13 +51,13 @@ public abstract class SimBehavior implements Behavior {
      * Méthode pour réaliser l'action lié à un comportement
      */
     @Override
-    public final void make() {
-        if(target == null) return;
-        action();
+    public final boolean make() {
+        if(target == null) return false;
+        return action();
     }
 
     /**
      * Méthode abstraite que doit effectuer l'entité cible
      */
-    protected abstract void action();
+    protected abstract boolean action();
 }

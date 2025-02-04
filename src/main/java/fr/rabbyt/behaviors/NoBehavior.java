@@ -13,6 +13,8 @@ public class NoBehavior extends SimBehavior {
      * Action a réaliser
      */
     @Override
-    protected void action() {/* ... */}
+    protected boolean action() {
+        return true;
+    }
     
 }

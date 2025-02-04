@@ -17,11 +17,12 @@ public class RdmMoveBehavior extends SimBehavior {
      * Action a réaliser
      */
     @Override
-    protected void action() {
+    protected boolean action() {
         Random rdm = new Random();
         int dx = rdm.nextInt(3) - 1;
         int dy = rdm.nextInt(3) - 1;
         target.move(dx, dy);
+        return true;
     }
     
 }

@@ -14,7 +14,7 @@ public interface Behavior {
     /**
      * Méthode pour réaliser l'action lié à un comportement
      */
-    public void make();
+    public boolean make();
 
     /**
      * Setter: Entité cible sur qui l'action sera réalisée
