@@ -1,6 +1,7 @@
 package fr.rabbyt;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 import fr.rabbyt.behaviors.EatingBehavior;
 import fr.rabbyt.behaviors.RdmMoveBehavior;
@@ -19,7 +20,10 @@ import fr.rabbyt.behaviors.RdmMoveBehavior;
  * @version 1.0
  * @since 2025-02-01
  */
-public class Pandian extends Entity {
+public class Pandian extends Entity implements Serializable {
+
+    // Identifiant de version pour la sérialisation
+    private static final long serialVersionUID = 1L;
 
     /* ======= Constantes de classe ======= */
 
@@ -74,6 +78,15 @@ public class Pandian extends Entity {
         this.name = name;
         setBehavior(new EatingBehavior());
     }
+
+    // Constructeur par défaut nécessaire pour la désérialisation
+    public Pandian() {
+        super(0, 0, pandianColor);  // Valeurs par défaut
+        this.energies = new SimEnergy(200);  // Initialisation explicite
+        this.name = PandianName.generate();
+        setBehavior(new EatingBehavior());
+    }
+
 
 
 

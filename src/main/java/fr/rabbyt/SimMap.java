@@ -3,6 +3,7 @@ package fr.rabbyt;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 // import java.util.Comparator;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import javax.swing.ImageIcon;
  * @version 1.2
  * @since 2025-01-31
  */
-public class SimMap {
+public class SimMap implements Serializable {
 
     /* ======= Constantes de classe ======= */
 

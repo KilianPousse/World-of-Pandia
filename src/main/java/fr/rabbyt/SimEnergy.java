@@ -1,5 +1,7 @@
 package fr.rabbyt;
 
+import java.io.Serializable;
+
 /**
  * Classe qui modélise l'énergie utilisé par un Pandien ({@link Pandian}).
  * Cette energie est vitale. Si elle tombe à zero, le Pandien meurt. <br>
@@ -9,7 +11,9 @@ package fr.rabbyt;
  * @version 1.0
  * @since 2025-02-01
  */
-public class SimEnergy {
+public class SimEnergy implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     /* ======= Constantes de classe ======= */
     /** Valeur maximale d'énergie */
