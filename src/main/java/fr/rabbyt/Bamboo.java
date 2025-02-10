@@ -1,7 +1,6 @@
 package fr.rabbyt;
 
 import java.awt.Color;
-import java.io.Serializable;
 
 /**
  * Classe qui represente de un bambou qui peut
@@ -12,7 +11,7 @@ import java.io.Serializable;
  * @version 1.0
  * @since 2025-02-03
  */
-public class Bamboo extends Food implements Serializable {
+public class Bamboo extends Food {
     
     /* ========= Constructeurs =========== */
     /**

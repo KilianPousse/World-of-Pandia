@@ -1,10 +1,7 @@
 package fr.rabbyt;
 
 import java.awt.Color;
-import java.io.Serializable;
-
 import fr.rabbyt.behaviors.EatingBehavior;
-import fr.rabbyt.behaviors.RdmMoveBehavior;
 
 /*
  * (\(\
@@ -20,7 +17,7 @@ import fr.rabbyt.behaviors.RdmMoveBehavior;
  * @version 1.0
  * @since 2025-02-01
  */
-public class Pandian extends Entity implements Serializable {
+public class Pandian extends Entity {
 
     // Identifiant de version pour la sérialisation
     private static final long serialVersionUID = 1L;
@@ -140,8 +137,8 @@ public class Pandian extends Entity implements Serializable {
       * Getter: Recuperation de l'energie
       * @return Energie du Pandien
       */
-    public int getEnergies() {
-        return energies.getValue();
+    public SimEnergy getEnergies() {
+        return energies;
     }
 
     /**
@@ -163,7 +160,7 @@ public class Pandian extends Entity implements Serializable {
      */
     public void eat(Food food) {
         int gain = food.getsEaten();
-        int energies = getEnergies() + gain;
+        int energies = getEnergies().getValue() + gain;
         setEnergies(energies);
     }
 

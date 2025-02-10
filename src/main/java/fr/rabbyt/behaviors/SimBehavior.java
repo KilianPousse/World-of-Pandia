@@ -1,5 +1,6 @@
 package fr.rabbyt.behaviors;
 
+import java.io.Serializable;
 import fr.rabbyt.Entity;
 
 /**
@@ -11,7 +12,7 @@ import fr.rabbyt.Entity;
  * @version 1.0
  * @since 2025-02-01
  */
-public abstract class SimBehavior implements Behavior {
+public abstract class SimBehavior implements Behavior, Serializable {
 
     /* ======= Variables d'instance ======= */
     /** Entité qui effectura l'action lié au comportement */

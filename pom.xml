@@ -4,7 +4,7 @@
 
   <groupId>fr.rabbyt</groupId>
   <artifactId>World-of-Pandia</artifactId>
-  <version>1.0</version>
+  <version>0.3.1</version>
   <description>Simulation d'une espace fictive appelée Pandien.</description>
 
   <packaging>jar</packaging>

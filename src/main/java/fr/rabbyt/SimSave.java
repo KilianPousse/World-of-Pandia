@@ -1,6 +1,5 @@
 package fr.rabbyt;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,6 +22,8 @@ public class SimSave {
             LogManager.addError("Probleme lors du chargement (" + e.getMessage() + ")");
             e.printStackTrace();  // Affiche la trace complète de l'erreur
         }
+
+        System.out.println("+++++" + map);
 
         return map;
     }

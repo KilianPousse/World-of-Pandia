@@ -1,6 +1,7 @@
 package fr.rabbyt;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +14,9 @@ import java.util.Set;
  * @version 1.1
  * @since 2025-01-31
  */
-public abstract class SimPixel implements SimObject {
+public abstract class SimPixel implements SimObject, Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
     /* ======= Constantes de classe ======= */
     /** Ensemble des identifiants des objets */
